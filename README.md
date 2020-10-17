@@ -37,7 +37,7 @@ Atmel AVR ATtiny45 / ATtiny85で動作できるように作成してあります
 
 ## 各種ドキュメント
 
-  * [CV値一覧](docs/CVList_ja.md)
+  * [CV値一覧](docs/CVList.md)
   
 ## AVR Fuse Bitの設定内容
 
