@@ -90,7 +90,7 @@ void receive_dcc_pulse(uint16_t pulse_count)
 		return;
 	}
 
-	if (_dcc_packet_count == 0xFF) {
+	if (_dcc_packet_count >= DCC_PACKET_LENGTH) {
 		//Ignore Pulse
 		return;
 	}
