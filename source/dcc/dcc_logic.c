@@ -403,8 +403,15 @@ void dcc_normal_operation(void)
 			*/
 			break;
 		case 0x20:
+			if (packet_cache_length != (packet_read_start_pos + 3)) {
+				return;
+			}
+			
+			if ((packet_cache[packet_read_start_pos] & 0x1F) != 0x1F) return;
+			
 			//Advanced Instructions (128-step)
-			if ((packet_cache[packet_read_start_pos] & 0x1F) == 0x1F) {
+			if (1) {
+			//if ((packet_cache[packet_read_start_pos] & 0x1F) == 0x1F) {
 				byte_tmp = packet_cache[packet_read_start_pos + 1] & 0x7F;
 
 				if (speed_128step_cache == byte_tmp) {
@@ -435,7 +442,6 @@ void dcc_normal_operation(void)
 			break;
 		/*
 		case 0x40:
-			//Reverse Speed Instruction (14-step, 28-step)
 			if (speed_28step_cache == packet_cache[packet_read_start_pos]) {
 				speed_28step_cache = 0xFF;
 				speed_28step_count = 0;
@@ -474,7 +480,13 @@ void dcc_normal_operation(void)
 		*/
 		case 0x40:
 		case 0x60:
-			if (speed_28step_cache == packet_cache[packet_read_start_pos]) {
+			// Speed Instruction (14-step, 28-step)
+			if (packet_cache_length != (packet_read_start_pos + 2)) {
+				return;
+			}
+			
+			if (1) {
+			//if (speed_28step_cache == packet_cache[packet_read_start_pos]) {
 				speed_28step_cache = 0xFF;
 				speed_28step_count = 0;
 				
